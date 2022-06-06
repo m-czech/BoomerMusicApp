@@ -12,5 +12,6 @@ namespace BoomerMusicApp.Data.DAL
         public void Delete(T entity);
         T GetSingle(Func<T, bool> condition);
         List<T> GetAll();
+        public void Save();
     }
 }
