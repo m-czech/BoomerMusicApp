@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BoomerMusicApp.Exceptions;
 
 namespace BoomerMusicApp.Utils
 {
@@ -22,15 +18,20 @@ namespace BoomerMusicApp.Utils
             }
             return input;
         }
-        public double FetchInputAsDoubleTruncatedToTwoDecimalPlaces(string prompt)
+        public double FetchInputAsNonNegativeDoubleTruncatedToTwoDecimalPlaces(string prompt)
         {
             var input = FetchString(prompt);
             double parsedInput;
-            while (!Double.TryParse(input, out parsedInput))
+            var parsingResult = Double.TryParse(input, out parsedInput);
+
+            while (!parsingResult)
             {
                 input = FetchString(prompt);
             }
-            return parsedInput;
+
+            if (parsedInput <= 0) throw new NotPositiveArgument("Entered song length is not a positive number!");
+
+            return Math.Round(parsedInput, 2);
         }
 
 

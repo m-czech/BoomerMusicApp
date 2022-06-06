@@ -1,5 +1,7 @@
-﻿using BoomerMusicApp.Utils;
+﻿using BoomerMusicApp.Data.Entities;
+using BoomerMusicApp.Utils;
 using BoomerMusicApp.Utils.Display;
+using BoomerMusicApp.Views;
 
 namespace BoomerMusicApp.Handlers
 {
@@ -7,27 +9,33 @@ namespace BoomerMusicApp.Handlers
     {
         IDisplay _display;
         IInput _input;
+        IView<Song> _songView;
         SongHandler _songHandler;
+        Menu _menu;
         public SongAppHandler()
         {
             _display = new ConsoleDisplay();
             _input = new ConsoleInput();
-            _songHandler = new(_input, _display);
+            _songView = new ConsoleSongView();
+            _songHandler = new(_input, _display, _songView);
+            _menu = new(_display);
         }
 
         public void Start()
         {
             _display.Display("Welcome to the BoomerSongApp! \n");
-            var _userInput = _input.FetchInput("Enter your option: ");
+            _menu.Display();
+
+            var _userInput = _input.FetchString("Enter your option: ");
 
             while (!_userInput.Equals("Exit the program")) {
                 switch (_userInput)
                 {
                     case "Add new song":
-                        _songHandler.AddNewSong();
+                        _songHandler.AddNew();
                         break;
                     case "Delete existing song":
-                        _songHandler.DeleteExistingSong();
+                        _songHandler.DeleteExistingRecord();
                         break;
                     case "Display specific song":
                         _songHandler.DisplaySpecificSong();
@@ -41,6 +49,9 @@ namespace BoomerMusicApp.Handlers
                     case "Exit the program":
                         return;
                 }
+               
+                _menu.Display();
+                _userInput = _input.FetchString("Enter your option: ");
             }
         }
     }

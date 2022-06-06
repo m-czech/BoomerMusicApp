@@ -1,10 +1,5 @@
 ﻿using BoomerMusicApp.Data.Entities;
 using BoomerMusicApp.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BoomerMusicApp.Factories
 {
@@ -23,7 +18,7 @@ namespace BoomerMusicApp.Factories
                 Title = _input.FetchStringThatIsAtLeastOneLetterLong("Enter title: "),
                 AlbumName = _input.FetchStringThatIsAtLeastOneLetterLong("Enter album name: "),
                 Lenght = _input.FetchInputAsNonNegativeDoubleTruncatedToTwoDecimalPlaces("Enter song length: ")
-            }
+            };
         }
     }
 }

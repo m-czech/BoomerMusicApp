@@ -1,9 +1,4 @@
 ﻿using BoomerMusicApp.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BoomerMusicApp.Views
 {
@@ -16,7 +11,7 @@ namespace BoomerMusicApp.Views
 
         public void DisplaySingle(Song entity)
         {
-            Console.WriteLine($"Author: {entity.Author}, Title: {entity.Title}, Album name: {entity.AlbumName}, Lenght: {entity.Lenght}");
+            Console.WriteLine($"Author: {entity.Author}, Title: {entity.Title}, Album name: {entity.AlbumName}, Lenght: {entity.Lenght} \n");
         }
     }
 }

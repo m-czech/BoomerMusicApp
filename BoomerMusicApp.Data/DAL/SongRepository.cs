@@ -1,10 +1,5 @@
 ﻿using BoomerMusicApp.Data.Context;
 using BoomerMusicApp.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BoomerMusicApp.Data.DAL
 {
@@ -15,6 +10,7 @@ namespace BoomerMusicApp.Data.DAL
         public SongRepository()
         {
             _context = new SongAppContext();
+            _context.Database.EnsureCreated();
         }
         public void Add(Song song)
         {
@@ -28,7 +24,7 @@ namespace BoomerMusicApp.Data.DAL
 
         public Song GetSingle(Func<Song, bool> condition)
         {
-            return _context.Songs.Where(condition).First();
+            return _context.Songs.FirstOrDefault(condition);
         }
 
         public List<Song> GetAll()
