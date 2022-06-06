@@ -29,7 +29,7 @@ namespace BoomerMusicApp.Utils
                 input = FetchString(prompt);
             }
 
-            if (parsedInput <= 0) throw new NotPositiveArgument("Entered song length is not a positive number!");
+            if (parsedInput <= 0) throw new NonPositiveArgument("Entered song length is not a positive number!");
 
             return Math.Round(parsedInput, 2);
         }
