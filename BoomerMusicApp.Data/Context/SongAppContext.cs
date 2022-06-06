@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BoomerMusicApp.Data.Context
 {
-    public class AppContext : DbContext
+    public class SongAppContext : DbContext
     {
         public DbSet<Song> Songs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=OnlineStore;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=SongApp;Integrated Security=True");
         }
 
     }
