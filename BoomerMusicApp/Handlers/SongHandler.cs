@@ -1,5 +1,6 @@
 ﻿using BoomerMusicApp.Data.DAL;
 using BoomerMusicApp.Data.Entities;
+using BoomerMusicApp.Factories;
 using BoomerMusicApp.Utils;
 using BoomerMusicApp.Utils.Display;
 using System;
@@ -23,7 +24,9 @@ namespace BoomerMusicApp.Handlers
         }
         public void AddNewSong()
         {
-
+            var songFactory = new SongFactory(_input);
+            var song = songFactory.Create();
+            _songRepository.Add(song);
         }
 
         public void DeleteExistingSong()
@@ -31,7 +34,7 @@ namespace BoomerMusicApp.Handlers
 
         }
 
-        public void DisplaySpecificSong(Func<Song, bool> condition)
+        public void DisplaySpecificSong()
         {
 
         }
