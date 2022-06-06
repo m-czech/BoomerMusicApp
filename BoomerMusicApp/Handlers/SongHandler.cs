@@ -50,8 +50,9 @@ namespace BoomerMusicApp.Handlers
             var songTitle = _input.FetchStringThatIsAtLeastOneLetterLong("Enter song's title: ");
             var songAuthor = _input.FetchStringThatIsAtLeastOneLetterLong("Enter song's author: ");
             var soughtSong = _songRepository.GetSingle(song => song.Title.Equals(songTitle) && song.Author.Equals(songAuthor));
+            if (soughtSong != null) { _songView.DisplaySingle(soughtSong); }
+            else { _display.Display("Song does not exist in the database"); }
             
-            _songView.DisplaySingle(soughtSong);
         }
 
         public void DisplayAllSongs()
